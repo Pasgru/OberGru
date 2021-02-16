@@ -21,7 +21,8 @@ allowed_list = [
     "redd.it",
     "imgur.com",
     ".png",
-    ".jpg"
+    ".jpg",
+    "gif"
 ]
 
 moderated_channels = [
