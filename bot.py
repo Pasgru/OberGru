@@ -22,7 +22,7 @@ allowed_list = [
     "imgur.com",
     ".png",
     ".jpg",
-    "gif"
+    ".gif"
 ]
 
 moderated_channels = [
