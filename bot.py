@@ -22,7 +22,8 @@ allowed_list = [
     "imgur.com",
     ".png",
     ".jpg",
-    ".gif"
+    ".gif",
+    "tenor.com/view/
 ]
 
 moderated_channels = [
