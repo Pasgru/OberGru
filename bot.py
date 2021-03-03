@@ -23,7 +23,7 @@ allowed_list = [
     ".png",
     ".jpg",
     ".gif",
-    "tenor.com/view/
+    "tenor.com/view/"
 ]
 
 moderated_channels = [
