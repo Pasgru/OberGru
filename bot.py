@@ -43,9 +43,8 @@ prefix = ["Feld", "Bauern", "Blumen", "Wein", "Bier", "Holz", "Stein", "Schnitzl
 
 suffix = ["stüberl", "kammerl", "hütte", "wiesn", "keller", "saal", "loch", "kabinett"]
 
-cwd = os.getcwd()
-
-jsonfile = os.path.join(cwd, 'vanity_roles.json')
+jsonfile = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'vanity_roles.json')
+print(jsonfile)
 
 bot = commands.Bot(command_prefix="!", intents=discord.Intents.all())
 slash = SlashCommand(bot, sync_commands=True)
