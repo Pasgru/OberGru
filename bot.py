@@ -57,39 +57,39 @@ async def on_message(message):
             await message.edit(suppress=True)
 
 
-@client.event
-async def on_voice_state_update(member, before, after):
-    if before.channel is None:
-        await connect(after)
-        return
-
-    if after.channel is None:
-        await disconnect(before)
-        return
-
-    if before.channel != after.channel:
-        await move(before, after)
-
-
-async def connect(after):
-    if len(after.channel.members) == 1 and after.channel.category_id == category_id:
-        for channel in category.voice_channels:
-            if len(channel.members) == 0:
-                return
-        await category.voice_channels[0].clone(name=random.choice(prefix) + random.choice(suffix))
-
-
-async def disconnect(before):
-    if len([c for c in category.voice_channels if len(c.members) == 0]) == 1:
-        return
-    if len(category.voice_channels) > 1 and len(
-            before.channel.members) == 0 and before.channel.category_id == category_id:
-        await before.channel.delete()
-
-
-async def move(before, after):
-    await connect(after)
-    await disconnect(before)
+# @client.event
+# async def on_voice_state_update(member, before, after):
+#     if before.channel is None:
+#         await connect(after)
+#         return
+#
+#     if after.channel is None:
+#         await disconnect(before)
+#         return
+#
+#     if before.channel != after.channel:
+#         await move(before, after)
+#
+#
+# async def connect(after):
+#     if len(after.channel.members) == 1 and after.channel.category_id == category_id:
+#         for channel in category.voice_channels:
+#             if len(channel.members) == 0:
+#                 return
+#         await category.voice_channels[0].clone(name=random.choice(prefix) + random.choice(suffix))
+#
+#
+# async def disconnect(before):
+#     if len([c for c in category.voice_channels if len(c.members) == 0]) == 1:
+#         return
+#     if len(category.voice_channels) > 1 and len(
+#             before.channel.members) == 0 and before.channel.category_id == category_id:
+#         await before.channel.delete()
+#
+#
+# async def move(before, after):
+#     await connect(after)
+#     await disconnect(before)
 
 
 client.run(TOKEN)
