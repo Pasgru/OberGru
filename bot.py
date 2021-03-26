@@ -5,6 +5,7 @@ import random
 import discord
 import re
 import json
+import os
 
 from discord.ext import commands
 from discord_slash import SlashCommand, SlashContext
@@ -42,6 +43,10 @@ prefix = ["Feld", "Bauern", "Blumen", "Wein", "Bier", "Holz", "Stein", "Schnitzl
 
 suffix = ["stüberl", "kammerl", "hütte", "wiesn", "keller", "saal", "loch", "kabinett"]
 
+cwd = os.getcwd()
+
+jsonfile = os.path.join(cwd, 'vanity_roles.json')
+
 bot = commands.Bot(command_prefix="!", intents=discord.Intents.all())
 slash = SlashCommand(bot, sync_commands=True)
 
@@ -69,7 +74,7 @@ async def gru(ctx, name: str, color: str):
                     f"`color` needs to be a six digit hexadecimal number beginning with a '#'.")
         return
 
-    with open('vanity_roles.json', 'r') as fp:
+    with open(jsonfile, 'r') as fp:
         data = json.load(fp)
 
     guild = ctx.guild
@@ -86,7 +91,7 @@ async def gru(ctx, name: str, color: str):
         await user.add_roles(new_role, reason='Added vanity role')
 
         data[str(ctx.author.id)] = new_role.id
-        with open('vanity_roles.json', 'w') as fp:
+        with open(jsonfile, 'w') as fp:
             json.dump(data, fp, sort_keys=True, indent=4)
         await ctx.send(content=f"Added role {name}, {color} to {ctx.author.name}")
 
@@ -116,7 +121,7 @@ async def ungru(ctx, user=None, reason=None):
         return
 
     if user:
-        with open('vanity_roles.json', 'r') as fp:
+        with open(jsonfile, 'r') as fp:
             data = json.load(fp)
 
         if str(user.id) not in data:
@@ -125,14 +130,14 @@ async def ungru(ctx, user=None, reason=None):
 
         roleid = data[str(user.id)]
         del data[str(user.id)]
-        with open('vanity_roles.json', 'w') as fp:
+        with open(jsonfile, 'w') as fp:
             json.dump(data, fp, sort_keys=True, indent=4)
 
         role = ctx.guild.get_role(roleid)
         await role.delete(reason=f"Removed by {ctx.author.name}. Reason: {reason}")
         await ctx.send(content=f"Removed {user}'s vanity role: {role}. Reason being: {reason}")
     else:
-        with open('vanity_roles.json', 'r') as fp:
+        with open(jsonfile, 'r') as fp:
             data = json.load(fp)
 
         if str(ctx.author.id) not in data:
@@ -142,7 +147,7 @@ async def ungru(ctx, user=None, reason=None):
         roleid = data[str(ctx.author.id)]
         del data[str(ctx.author.id)]
 
-        with open('vanity_roles.json', 'w') as fp:
+        with open(jsonfile, 'w') as fp:
             json.dump(data, fp, sort_keys=True, indent=4)
 
         role = ctx.guild.get_role(roleid)
