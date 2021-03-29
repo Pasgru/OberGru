@@ -1,5 +1,5 @@
 .idea/
-.env
+secrets.json
 vanity_roles.json
 config_dev.json
 test.py

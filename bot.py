@@ -10,14 +10,17 @@ import discord
 from discord.ext import commands
 from discord_slash import SlashCommand
 from discord_slash.utils.manage_commands import create_option
-from dotenv import dotenv_values
 
 global category
 random.seed()
 
-TOKEN = dotenv_values(".env")["TOKEN"]
+secrets_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'secrets.json')
+with open(secrets_file, 'r') as sec:
+    TOKEN = json.load(sec)["TOKEN"]
+
 vanity_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'vanity_roles.json')
-config_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'config.json')
+
+config_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'config_dev.json')
 with open(config_file, 'r') as file:
     config = json.load(file)
 
