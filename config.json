@@ -1,0 +1,40 @@
+{
+  "server_id": 143706554703675392,
+  "dynamic_category_id": 809128207805710397,
+  "admin_role_id": 143709645213663232,
+  "whitelisted_previews": [
+    "youtube.com/watch",
+    "youtu.be",
+    "redd.it",
+    "imgur.com",
+    ".png",
+    ".jpg",
+    ".gif",
+    "tenor.com/view/"
+  ],
+  "moderated_channels": [
+    547000766779490304,
+    784923413663580160,
+    761591445156659272
+  ],
+  "channel_name_prefix": [
+    "Feld",
+    "Bauern",
+    "Blumen",
+    "Wein",
+    "Bier",
+    "Holz",
+    "Stein",
+    "Schnitzl"
+  ],
+  "channel_name_suffix": [
+    "stüberl",
+    "kammerl",
+    "hütte",
+    "wiesn",
+    "keller",
+    "saal",
+    "loch",
+    "kabinett"
+  ]
+}
