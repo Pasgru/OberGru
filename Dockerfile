@@ -1,10 +1,5 @@
-FROM python:3.10-slim
-
-WORKDIR /code
-
-COPY ./requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
-
-COPY ./src ./src
-
-CMD ["python bot.py"]
+FROM python:3.10
+ADD requirements.txt /
+RUN pip install -r requirements.txt
+ADD bot.py /
+CMD [ "python", "bot.py" ]
